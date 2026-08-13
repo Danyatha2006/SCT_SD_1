@@ -1,0 +1,6050 @@
+/* =========================================================
+   THERMOSENSE
+   Premium Temperature Intelligence Dashboard
+   ========================================================= */
+
+
+/* ===================== ROOT ===================== */
+
+:root {
+
+    --background: #0b0d12;
+    --background-secondary: #11141b;
+
+    --card: rgba(25, 28, 37, 0.88);
+    --card-hover: rgba(31, 35, 46, 0.95);
+
+    --border: rgba(255, 255, 255, 0.08);
+
+    --text-primary: #f4f5f7;
+    --text-secondary: #9da3b2;
+    --text-muted: #686f7e;
+
+    --accent: #b9e7e8;
+    --accent-strong: #77d9dc;
+
+    --success: #7de2a8;
+    --warning: #f4c96b;
+    --danger: #ff7f7f;
+
+    --sidebar-width: 230px;
+
+    --radius-large: 24px;
+    --radius-medium: 16px;
+    --radius-small: 10px;
+
+    --transition: 0.25s ease;
+}
+
+
+/* ===================== RESET ===================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family: "Inter", sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(89, 119, 145, 0.13),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 85%,
+            rgba(67, 126, 133, 0.09),
+            transparent 30%
+        ),
+        var(--bg-primary);
+
+    color: var(--text-primary);
+
+    overflow-x: hidden;
+
+    transition:
+        background-color 0.35s ease,
+        color 0.35s ease;
+}
+
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+
+/* ===================== APP ===================== */
+
+.app-container {
+
+    display: flex;
+
+    min-height: 100vh;
+
+    width: 100%;
+}
+
+
+/* ===================== SIDEBAR ===================== */
+
+.sidebar {
+
+    width: var(--sidebar-width);
+    min-height: 100vh;
+    padding: 28px 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(18, 21, 28, 0.98),
+            rgba(12, 14, 19, 0.98)
+        );
+
+    border-right: 1px solid var(--border);
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    z-index: 100;
+}
+
+
+/* ===================== BRAND ===================== */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 10px;
+
+    margin-bottom: 50px;
+}
+
+
+.brand-icon {
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent-strong)
+        );
+
+    color: #101318;
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 8px 25px rgba(119, 217, 220, 0.18);
+}
+
+
+.brand-name {
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.4px;
+}
+
+
+/* ===================== NAVIGATION ===================== */
+
+.navigation {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.nav-item {
+
+    
+    width: 100%;
+    padding-left: 24px;
+    padding-right: 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 13px 14px;
+
+    border-radius: 12px;
+
+    background: transparent;
+
+    color: var(--text-secondary);
+
+    text-align: left;
+
+    transition:
+        background var(--transition),
+        color var(--transition),
+        transform var(--transition);
+}
+
+
+.nav-item:hover {
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: var(--text-primary);
+
+    transform: translateX(2px);
+}
+
+
+.nav-item.active {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(185, 231, 232, 0.13),
+            rgba(185, 231, 232, 0.04)
+        );
+
+    color: var(--accent);
+}
+
+
+.nav-icon {
+
+    width: 20px;
+
+    text-align: center;
+
+    font-size: 18px;
+}
+
+
+.nav-text {
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+
+.sidebar-bottom {
+
+    margin-top: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+/* ===================== MAIN ===================== */
+
+.main-content {
+
+    margin-left: var(--sidebar-width);
+
+    width: calc(100% - var(--sidebar-width));
+
+    min-height: 100vh;
+
+    padding: 36px 42px 50px;
+}
+
+
+/* ===================== TOPBAR ===================== */
+
+.topbar {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 32px;
+
+    gap: 30px;
+}
+
+
+.eyebrow {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--accent);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.page-heading h1 {
+
+    font-size: clamp(28px, 3vw, 40px);
+
+    line-height: 1.15;
+
+    letter-spacing: -1.5px;
+
+    margin-bottom: 8px;
+}
+
+
+.page-heading p {
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+
+.topbar-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 7px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+}
+
+
+.icon-button,
+.theme-button,
+.unit-toggle {
+
+    height: 34px;
+
+    min-width: 34px;
+
+    padding: 0 10px;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: var(--text-secondary);
+
+    transition:
+        background var(--transition),
+        color var(--transition);
+}
+
+
+.icon-button:hover,
+.theme-button:hover,
+.unit-toggle:hover {
+
+    background: rgba(255, 255, 255, 0.07);
+
+    color: var(--text-primary);
+}
+
+
+.unit-toggle.active {
+
+    background: var(--accent);
+
+    color: #11151a;
+
+    font-weight: 700;
+}
+
+
+/* ===================== DASHBOARD GRID ===================== */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.8fr)
+        minmax(300px, 0.7fr);
+
+    gap: 18px;
+}
+
+
+/* ===================== CARD ===================== */
+
+/* ===================== CARD ===================== */
+
+.card {
+
+    position: relative;
+
+    padding: 24px;
+
+    background:
+        var(--bg-card);
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius:
+        var(--radius-large);
+
+    box-shadow:
+        var(--shadow-card);
+
+    color:
+        var(--text-primary);
+
+    overflow:
+        hidden;
+
+    transition:
+        transform var(--transition),
+        background-color 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+.card:hover {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        rgba(119, 217, 220, 0.22);
+
+    box-shadow:
+        0 22px 60px rgba(0, 0, 0, 0.24);
+}
+
+
+/* Soft premium glow inside cards */
+
+.card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -110px;
+    top: -110px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(119, 217, 220, 0.08),
+            transparent 70%
+        );
+
+    border-radius:
+        50%;
+
+    pointer-events:
+        none;
+}
+
+
+/* Keep card content above glow */
+
+.card > * {
+
+    position: relative;
+
+    z-index: 1;
+}
+
+.card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -90px;
+    top: -90px;
+
+    background: rgba(119, 217, 220, 0.05);
+
+    border-radius: 50%;
+
+    filter: blur(5px);
+
+    pointer-events: none;
+}
+
+
+.card:hover {
+
+    border-color: rgba(185, 231, 232, 0.14);
+}
+
+
+.card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 20px;
+
+    margin-bottom: 24px;
+}
+
+
+.card-label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--text-muted);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.6px;
+}
+
+
+.card h2 {
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    letter-spacing: -0.4px;
+}
+
+
+.status-dot {
+
+    padding: 5px 8px;
+
+    border-radius: 7px;
+
+    background: rgba(125, 226, 168, 0.08);
+
+    color: var(--success);
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+/* ===================== CONVERTER ===================== */
+
+.converter-card {
+
+    grid-column: span 1;
+}
+
+
+.converter-area {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: 24px;
+
+    min-height: 190px;
+}
+
+
+.temperature-input label,
+.output-label,
+.select-group label {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: var(--text-muted);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.4px;
+}
+
+
+.input-wrapper {
+
+    position: relative;
+}
+
+
+.input-wrapper input {
+
+    width: 100%;
+
+    height: 75px;
+
+    padding: 0 65px 0 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 15px;
+
+    outline: none;
+
+    background: rgba(7, 9, 13, 0.45);
+
+    color: var(--text-primary);
+
+    font-size: 29px;
+
+    font-weight: 600;
+
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+
+.input-wrapper input:focus {
+
+    border-color: rgba(119, 217, 220, 0.45);
+
+    box-shadow:
+        0 0 0 4px rgba(119, 217, 220, 0.06);
+}
+
+
+.input-unit {
+
+    position: absolute;
+
+    right: 18px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--accent);
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+.swap-button {
+
+    width: 44px;
+    height: 44px;
+
+    border-radius: 50%;
+
+    background: rgba(185, 231, 232, 0.08);
+
+    border: 1px solid rgba(185, 231, 232, 0.13);
+
+    color: var(--accent);
+
+    font-size: 21px;
+
+    transition:
+        transform var(--transition),
+        background var(--transition);
+}
+
+
+.swap-button:hover {
+
+    transform: rotate(180deg);
+
+    background: rgba(185, 231, 232, 0.15);
+}
+
+
+.temperature-output {
+
+    padding-left: 10px;
+}
+
+
+.output-value {
+
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 7px;
+
+    margin: 15px 0 8px;
+}
+
+
+#resultValue {
+
+    font-size: clamp(38px, 4vw, 55px);
+
+    font-weight: 700;
+
+    letter-spacing: -2.5px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #ffffff,
+            var(--accent)
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+#resultUnit {
+
+    color: var(--accent);
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+
+.copy-result {
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition: color var(--transition);
+}
+
+
+.copy-result:hover {
+
+    color: var(--accent);
+}
+
+
+/* ===================== UNIT SELECTION ===================== */
+
+.unit-selection {
+
+    display: grid;
+
+    grid-template-columns: 1fr 45px 1fr;
+
+    align-items: end;
+
+    gap: 12px;
+
+    margin-top: 10px;
+}
+
+
+.select-group select {
+
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: rgba(7, 9, 13, 0.55);
+
+    color: var(--text-primary);
+
+    cursor: pointer;
+}
+
+
+.select-group select:focus {
+
+    border-color: rgba(119, 217, 220, 0.4);
+}
+
+
+.select-group option {
+
+    background: #171a21;
+
+    color: white;
+}
+
+
+.large-swap {
+
+    width: 45px;
+    height: 44px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    color: var(--text-secondary);
+
+    font-size: 18px;
+
+    transition:
+        background var(--transition),
+        color var(--transition);
+}
+
+
+.large-swap:hover {
+
+    background: rgba(185, 231, 232, 0.1);
+
+    color: var(--accent);
+}
+
+
+/* ===================== CONVERTER FOOTER ===================== */
+
+.converter-footer {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 20px;
+
+    padding-top: 16px;
+
+    border-top: 1px solid var(--border);
+}
+
+
+.precision-control {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+}
+
+
+.precision-control select {
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    padding: 5px 7px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    color: var(--text-secondary);
+
+    outline: none;
+}
+
+
+.instant-label {
+
+    color: var(--success);
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+
+/* ===================== STATUS ===================== */
+
+.status-content {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 18px 0;
+}
+
+
+.temperature-icon {
+
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(244, 201, 107, 0.15),
+            rgba(244, 201, 107, 0.02)
+        );
+
+    font-size: 32px;
+}
+
+
+.status-temperature strong {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 28px;
+
+    letter-spacing: -1px;
+}
+
+
+.status-temperature span {
+
+    color: var(--warning);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+.status-card p {
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+
+/* ===================== TEMPERATURE SCALE ===================== */
+
+.scale-container {
+
+    padding-top: 8px;
+}
+
+
+.scale-labels,
+.scale-values {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: var(--text-muted);
+
+    font-size: 9px;
+}
+
+
+.scale-labels span:nth-child(3) {
+
+    color: var(--accent);
+}
+
+
+.temperature-scale {
+
+    position: relative;
+
+    height: 14px;
+
+    margin: 26px 0 12px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7399d9 0%,
+            #9dc9df 25%,
+            #c9dfd4 50%,
+            #e8c67d 75%,
+            #e67d72 100%
+        );
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+.scale-indicator {
+
+    position: absolute;
+
+    top: 50%;
+    left: 65%;
+
+    width: 28px;
+    height: 28px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: #f7fbfb;
+
+    border: 5px solid #20252d;
+
+    box-shadow:
+        0 0 0 2px rgba(185, 231, 232, 0.8),
+        0 4px 15px rgba(0, 0, 0, 0.35);
+
+    transition:
+        left 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.35s ease;
+
+    z-index: 2;
+}
+
+
+.scale-indicator::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -8px;
+
+    border-radius: 50%;
+
+    border: 1px solid
+        rgba(185, 231, 232, 0.22);
+
+    animation:
+        scalePulse 2.2s ease-in-out infinite;
+}
+
+
+@keyframes scalePulse {
+
+    0%,
+    100% {
+
+        transform: scale(0.85);
+
+        opacity: 0.3;
+
+    }
+
+    50% {
+
+        transform: scale(1.15);
+
+        opacity: 0.8;
+
+    }
+}
+
+/* ===================== HISTORY ===================== */
+
+.history-card {
+
+    grid-column: 1 / -1;
+}
+
+
+.clear-history {
+
+    background: transparent;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    transition: color var(--transition);
+}
+
+
+.clear-history:hover {
+
+    color: var(--danger);
+}
+
+
+.history-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.history-empty {
+
+    padding: 30px;
+
+    text-align: center;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+
+    border-radius: 12px;
+}
+
+
+.history-item {
+
+    display: grid;
+
+    grid-template-columns: 1fr auto auto;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 13px 15px;
+
+    border-radius: 11px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border: 1px solid transparent;
+
+    transition:
+        background var(--transition),
+        border-color var(--transition);
+}
+
+
+.history-item:hover {
+
+    background: rgba(255, 255, 255, 0.045);
+
+    border-color: var(--border);
+}
+
+
+.history-conversion {
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.history-conversion span {
+
+    color: var(--accent);
+}
+
+
+.history-time {
+
+    color: var(--text-muted);
+
+    font-size: 9px;
+}
+
+
+.history-delete {
+
+    background: transparent;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+}
+
+
+.history-delete:hover {
+
+    color: var(--danger);
+}
+
+
+/* ===================== REFERENCES ===================== */
+
+.references-card {
+
+    grid-column: 1 / -1;
+}
+
+
+.reference-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 10px;
+}
+
+
+.reference-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 15px;
+
+    border-radius: 13px;
+
+    text-align: left;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border: 1px solid transparent;
+
+    color: var(--text-primary);
+
+    transition:
+        transform var(--transition),
+        background var(--transition),
+        border-color var(--transition);
+}
+
+
+.reference-item:hover {
+
+    transform: translateY(-2px);
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border-color: var(--border);
+}
+
+
+.reference-icon {
+
+    font-size: 22px;
+}
+
+
+.reference-item strong {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 10px;
+}
+
+
+.reference-item small {
+
+    color: var(--text-muted);
+
+    font-size: 8px;
+}
+
+
+/* ===================== RESPONSIVE ===================== */
+
+@media (max-width: 1100px) {
+
+    .sidebar {
+
+        width: 76px;
+
+        padding: 25px 12px;
+    }
+
+    .main-content {
+
+        margin-left: 76px;
+
+        width: calc(100% - 76px);
+
+        padding: 30px;
+    }
+
+    .brand {
+
+        justify-content: center;
+
+        padding: 0;
+
+        margin-bottom: 40px;
+    }
+
+    .brand-name,
+    .nav-text {
+
+        display: none;
+    }
+
+    .nav-item {
+
+        justify-content: center;
+
+        padding: 13px 8px;
+    }
+
+    .dashboard-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .converter-card,
+    .history-card,
+    .references-card {
+
+        grid-column: auto;
+    }
+
+    .reference-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .sidebar {
+
+        display: none;
+    }
+
+    .main-content {
+
+        margin-left: 0;
+
+        width: 100%;
+
+        padding: 22px 16px 35px;
+    }
+
+    .topbar {
+
+        flex-direction: column;
+    }
+
+    .topbar-actions {
+
+        width: 100%;
+
+        justify-content: space-between;
+    }
+
+    .converter-area {
+
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+    }
+
+    .swap-button {
+
+        justify-self: center;
+    }
+
+    .temperature-output {
+
+        padding-left: 0;
+
+        text-align: center;
+    }
+
+    .output-value {
+
+        justify-content: center;
+    }
+
+    .unit-selection {
+
+        grid-template-columns: 1fr;
+    }
+
+    .large-swap {
+
+        justify-self: center;
+
+        transform: rotate(90deg);
+    }
+
+    .reference-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .history-item {
+
+        grid-template-columns: 1fr auto;
+    }
+
+    .history-time {
+
+        display: none;
+    }
+
+    .converter-footer {
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+        flex-direction: column;
+    }
+}
+
+
+@media (max-width: 420px) {
+
+    .page-heading h1 {
+
+        font-size: 27px;
+    }
+
+    .card {
+
+        padding: 18px;
+
+        border-radius: 18px;
+    }
+
+    #resultValue {
+
+        font-size: 40px;
+    }
+
+    .topbar-actions {
+
+        overflow-x: auto;
+    }
+}
+/* ===================== HISTORY ANIMATION ===================== */
+
+.history-item {
+
+    animation:
+        historyEntryIn 0.35s ease both;
+}
+
+
+@keyframes historyEntryIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(-8px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+}
+
+
+.history-delete {
+
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.history-delete:hover {
+
+    background:
+        rgba(255, 127, 127, 0.1);
+
+    transform:
+        scale(1.08);
+}
+
+
+/* ===================== REFERENCE CLICK FEEDBACK ===================== */
+
+.reference-item:active {
+
+    transform:
+        scale(0.98);
+}
+/* =========================================================
+   PHASE 5 — PREMIUM ANIMATIONS
+   ========================================================= */
+
+
+/* ===================== PAGE ENTRANCE ===================== */
+
+.sidebar {
+    animation: sidebarEnter 0.7s ease both;
+}
+
+.main-content {
+    animation: contentEnter 0.7s ease 0.1s both;
+}
+
+
+@keyframes sidebarEnter {
+
+    from {
+        opacity: 0;
+        transform: translateX(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes contentEnter {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ===================== CARD ENTRANCE ===================== */
+
+.dashboard-grid .card {
+
+    animation:
+        cardEnter 0.6s ease both;
+
+}
+
+
+.dashboard-grid .card:nth-child(1) {
+    animation-delay: 0.15s;
+}
+
+.dashboard-grid .card:nth-child(2) {
+    animation-delay: 0.22s;
+}
+
+.dashboard-grid .card:nth-child(3) {
+    animation-delay: 0.29s;
+}
+
+.dashboard-grid .card:nth-child(4) {
+    animation-delay: 0.36s;
+}
+
+.dashboard-grid .card:nth-child(5) {
+    animation-delay: 0.43s;
+}
+
+
+@keyframes cardEnter {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(0.985);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+}
+/* ===================== CARD HOVER ===================== */
+
+.card {
+
+    will-change: transform;
+
+}
+
+
+.card:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 22px 60px rgba(0, 0, 0, 0.24);
+}
+/* ===================== RESULT ANIMATION ===================== */
+
+#resultValue {
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.result-update {
+
+    animation:
+        resultUpdate 0.35s ease;
+}
+
+
+@keyframes resultUpdate {
+
+    0% {
+
+        opacity: 0.25;
+
+        transform:
+            translateY(7px)
+            scale(0.97);
+
+    }
+
+    60% {
+
+        opacity: 1;
+
+        transform:
+            translateY(-2px)
+            scale(1.02);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+}
+/* ===================== INPUT GLOW ===================== */
+
+.input-wrapper {
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.input-wrapper:focus-within {
+
+    transform:
+        translateY(-2px);
+}
+
+
+.input-wrapper::after {
+
+    content: "";
+
+    position: absolute;
+
+    pointer-events: none;
+
+    inset: 0;
+
+    border-radius: 15px;
+
+    opacity: 0;
+
+    box-shadow:
+        0 0 30px
+        rgba(119, 217, 220, 0.08);
+
+    transition:
+        opacity 0.3s ease;
+}
+
+
+.input-wrapper:focus-within::after {
+
+    opacity: 1;
+}
+/* ===================== INPUT POLISH ===================== */
+
+.input-wrapper input {
+
+    caret-color:
+        var(--accent);
+
+}
+
+
+.input-wrapper input::placeholder {
+
+    color:
+        rgba(255, 255, 255, 0.18);
+
+}
+
+
+.input-wrapper input::-webkit-inner-spin-button,
+.input-wrapper input::-webkit-outer-spin-button {
+
+    opacity: 0.4;
+
+}
+/* ===================== SWAP BUTTON ===================== */
+
+.swap-button,
+.large-swap {
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+.swap-button::before,
+.large-swap::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    left: 50%;
+    top: 50%;
+
+    border-radius: 50%;
+
+    background:
+        rgba(185, 231, 232, 0.12);
+
+    transform:
+        translate(-50%, -50%);
+
+    transition:
+        width 0.35s ease,
+        height 0.35s ease;
+}
+
+
+.swap-button:hover::before,
+.large-swap:hover::before {
+
+    width: 100px;
+    height: 100px;
+}
+
+
+.swap-button,
+.large-swap {
+
+    z-index: 1;
+}
+
+
+.swap-button,
+.large-swap {
+
+    isolation: isolate;
+}
+/* ===================== STATUS ICON ===================== */
+
+.temperature-icon {
+
+    animation:
+        temperatureBreath 3s ease-in-out infinite;
+
+}
+
+
+@keyframes temperatureBreath {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-3px)
+            scale(1.035);
+
+    }
+}
+/* ===================== STATUS CATEGORY ===================== */
+
+#temperatureCategory {
+
+    display: inline-block;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+#temperatureCategory:hover {
+
+    transform:
+        translateX(3px);
+}
+/* ===================== SCALE GLOW ===================== */
+
+.temperature-scale {
+
+    overflow: visible;
+
+    position: relative;
+
+}
+
+
+.temperature-scale::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -5px 0;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(115, 153, 217, 0.15),
+            rgba(201, 223, 212, 0.12),
+            rgba(230, 125, 114, 0.15)
+        );
+
+    filter:
+        blur(8px);
+
+    z-index: -1;
+}
+/* ===================== REFERENCE CARDS ===================== */
+
+.reference-item {
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.reference-item::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 80px;
+    height: 80px;
+
+    right: -30px;
+    bottom: -30px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(185, 231, 232, 0.04);
+
+    transition:
+        transform 0.4s ease;
+}
+
+
+.reference-item:hover::before {
+
+    transform:
+        scale(2.2);
+}
+
+
+.reference-icon {
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.reference-item:hover .reference-icon {
+
+    transform:
+        scale(1.12)
+        rotate(-4deg);
+}
+/* ===================== HISTORY INTERACTION ===================== */
+
+.history-item {
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.history-item:hover {
+
+    transform:
+        translateX(3px);
+}
+
+
+.history-conversion span {
+
+    display: inline-block;
+
+    margin:
+        0 5px;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.history-item:hover
+.history-conversion span {
+
+    transform:
+        translateX(2px);
+}
+/* ===================== BUTTON PRESS ===================== */
+
+button:active {
+
+    transform:
+        scale(0.97);
+}
+
+
+.swap-button:active,
+.large-swap:active {
+
+    transform:
+        scale(0.93);
+}
+/* ===================== AMBIENT BACKGROUND ===================== */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    width: 420px;
+    height: 420px;
+
+    top: -180px;
+    right: -150px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(119, 217, 220, 0.035);
+
+    filter:
+        blur(70px);
+
+    pointer-events: none;
+
+    animation:
+        ambientFloat 8s ease-in-out infinite;
+}
+
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 350px;
+    height: 350px;
+
+    bottom: -160px;
+    left: 25%;
+
+    border-radius: 50%;
+
+    background:
+        rgba(91, 108, 145, 0.035);
+
+    filter:
+        blur(80px);
+
+    pointer-events: none;
+
+    animation:
+        ambientFloat 10s ease-in-out infinite reverse;
+}
+
+
+@keyframes ambientFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translate(0, 0);
+
+    }
+
+    50% {
+
+        transform:
+            translate(-25px, 20px);
+
+    }
+}
+
+/* ===================== ACCESSIBILITY ===================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+        scroll-behavior: auto !important;
+    }
+}
+/* =========================================================
+   PHASE 6 — THEME SYSTEM
+   ========================================================= */
+
+:root {
+
+    --transition-theme:
+        background-color 0.35s ease,
+        color 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* ===================== LIGHT THEME ===================== */
+
+[data-theme="light"] {
+
+    --bg-primary: #f4f7f8;
+
+    --bg-secondary: #ffffff;
+
+    --bg-sidebar: #ffffff;
+
+    --bg-card: rgba(255, 255, 255, 0.92);
+
+    --bg-input: #f7f9fa;
+
+    --text-primary: #182126;
+
+    --text-secondary: #5f6c72;
+
+    --text-muted: #879399;
+
+    --border-color: rgba(24, 33, 38, 0.10);
+
+    --accent: #4caeb3;
+
+    --accent-soft: rgba(76, 174, 179, 0.12);
+
+    --success: #3e9d72;
+
+    --danger: #d96464;
+
+    --shadow-card:
+        0 18px 50px rgba(33, 49, 57, 0.08);
+}
+
+
+/* ===================== THEME TRANSITION ===================== */
+
+body,
+.sidebar,
+.card,
+.input-wrapper,
+input,
+select,
+button,
+.history-item,
+.reference-item,
+.temperature-scale,
+.nav-item {
+
+    transition:
+        var(--transition-theme);
+}
+/* ===================== THEME TOGGLE ===================== */
+
+.theme-toggle {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid var(--border-color);
+
+    background:
+        var(--bg-input);
+
+    color:
+        var(--text-primary);
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
+}
+
+
+.theme-toggle:hover {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        rgba(119, 217, 220, 0.35);
+
+}
+
+
+.theme-toggle:active {
+
+    transform:
+        scale(0.94);
+
+}
+
+
+.theme-icon {
+
+    font-size: 18px;
+
+    transition:
+        transform 0.4s ease;
+}
+
+
+.theme-toggle:hover .theme-icon {
+
+    transform:
+        rotate(18deg)
+        scale(1.08);
+}
+/* =========================================================
+   PHASE 7 — RESPONSIVE DESIGN
+   ========================================================= */
+
+
+/* ===================== TABLET ===================== */
+
+@media (max-width: 1100px) {
+
+    .sidebar {
+        width: 82px;
+    }
+
+    .brand-name,
+    .nav-text {
+        display: none;
+    }
+
+    .brand {
+        justify-content: center;
+    }
+
+    .navigation,
+    .sidebar-bottom {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+    .nav-item {
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        padding: 0;
+    }
+
+    .nav-item.active::before {
+        left: -8px;
+    }
+
+    .main-content {
+        margin-left: 82px;
+        padding: 28px;
+    }
+
+    .topbar {
+        gap: 20px;
+    }
+
+    .page-heading h1 {
+        font-size: 28px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .converter-card,
+    .status-card,
+    .scale-card,
+    .history-card,
+    .references-card {
+        grid-column: auto;
+    }
+
+    .reference-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+/* ===================== MOBILE ===================== */
+
+@media (max-width: 768px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+
+    /* ---------- Sidebar ---------- */
+
+    .sidebar {
+        position: fixed;
+
+        left: 0;
+        bottom: 0;
+
+        top: auto;
+
+        width: 100%;
+        height: 70px;
+
+        z-index: 100;
+
+        border-right: none;
+
+        border-top:
+            1px solid var(--border-color);
+
+        display: flex;
+
+        flex-direction: row;
+
+        align-items: center;
+
+        justify-content: center;
+    }
+
+
+    .brand {
+        display: none;
+    }
+
+
+    .navigation {
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: space-around;
+
+        flex-direction: row;
+
+        gap: 4px;
+    }
+
+
+    .sidebar-bottom {
+        display: none;
+    }
+
+
+    .nav-item {
+        width: 52px;
+        height: 52px;
+
+        padding: 0;
+
+        border-radius: 14px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .nav-icon {
+        font-size: 20px;
+    }
+
+
+    .nav-text {
+        display: none;
+    }
+
+
+    .nav-item.active::before {
+        left: 50%;
+        top: auto;
+        bottom: -7px;
+
+        width: 22px;
+        height: 3px;
+
+        transform:
+            translateX(-50%);
+
+        border-radius:
+            5px 5px 0 0;
+    }
+
+
+    /* ---------- Main Content ---------- */
+
+    .main-content {
+        margin-left: 0;
+
+        padding:
+            22px 16px 95px;
+    }
+
+
+    /* ---------- Header ---------- */
+
+    .topbar {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 18px;
+
+        margin-bottom: 24px;
+    }
+
+
+    .page-heading {
+        width: 100%;
+    }
+
+
+    .page-heading h1 {
+        font-size: 25px;
+
+        line-height: 1.25;
+    }
+
+
+    .page-heading p {
+        font-size: 13px;
+
+        line-height: 1.6;
+    }
+
+
+    .topbar-actions {
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 7px;
+
+        overflow-x: auto;
+
+        padding-bottom: 3px;
+    }
+
+
+    .topbar-actions::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .icon-button,
+    .theme-toggle {
+        flex-shrink: 0;
+    }
+
+
+    .unit-toggle {
+        flex-shrink: 0;
+    }
+
+
+    /* ---------- Cards ---------- */
+
+    .card {
+        border-radius: 18px;
+
+        padding: 20px;
+    }
+
+
+    .card-header {
+        gap: 12px;
+    }
+
+
+    .card-header h2 {
+        font-size: 17px;
+    }
+
+
+    /* ---------- Converter ---------- */
+
+    .converter-area {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+
+    .swap-button {
+        display: none;
+    }
+
+
+    .temperature-input,
+    .temperature-output {
+        width: 100%;
+    }
+
+
+    .output-value {
+        font-size: 38px;
+    }
+
+
+    .unit-selection {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+
+    .large-swap {
+        width: 100%;
+        height: 42px;
+    }
+
+
+    .converter-footer {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+
+    /* ---------- Temperature Scale ---------- */
+
+    .scale-labels {
+        font-size: 10px;
+
+        gap: 4px;
+    }
+
+
+    .scale-values {
+        font-size: 10px;
+    }
+
+
+    .temperature-scale {
+        height: 12px;
+    }
+
+
+    .scale-indicator {
+        width: 23px;
+        height: 23px;
+
+        border-width: 4px;
+    }
+
+
+    /* ---------- Status ---------- */
+
+    .status-content {
+        gap: 14px;
+    }
+
+
+    .temperature-icon {
+        font-size: 42px;
+    }
+
+
+    .status-temperature strong {
+        font-size: 25px;
+    }
+
+
+    /* ---------- History ---------- */
+
+    .history-item {
+        grid-template-columns: 1fr auto auto;
+
+        gap: 8px;
+    }
+
+
+    .history-conversion {
+        font-size: 13px;
+    }
+
+
+    .history-time {
+        font-size: 10px;
+    }
+
+
+    /* ---------- References ---------- */
+
+    .reference-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .reference-item {
+        min-height: 68px;
+    }
+}
+
+
+/* ===================== SMALL PHONES ===================== */
+
+@media (max-width: 480px) {
+
+    .main-content {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+
+    .card {
+        padding: 17px;
+
+        border-radius: 16px;
+    }
+
+
+    .page-heading h1 {
+        font-size: 22px;
+    }
+
+
+    .eyebrow {
+        font-size: 9px;
+    }
+
+
+    .topbar-actions {
+        gap: 5px;
+    }
+
+
+    .unit-toggle {
+        padding:
+            8px 11px;
+
+        font-size: 11px;
+    }
+
+
+    .icon-button,
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .input-wrapper input {
+        font-size: 30px;
+    }
+
+
+    .output-value {
+        font-size: 32px;
+    }
+
+
+    .status-temperature strong {
+        font-size: 22px;
+    }
+
+
+    .temperature-description {
+        font-size: 12px;
+    }
+
+
+    .scale-labels {
+        font-size: 8px;
+    }
+
+
+    .scale-values {
+        font-size: 9px;
+    }
+
+
+    .history-conversion {
+        font-size: 12px;
+    }
+
+
+    .history-time {
+        display: none;
+    }
+}
+
+
+/* ===================== LANDSCAPE MOBILE ===================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+
+    .sidebar {
+        height: 58px;
+    }
+
+
+    .main-content {
+        padding-bottom: 75px;
+    }
+
+
+    .nav-item {
+        height: 44px;
+        width: 44px;
+    }
+}
+/* =========================================================
+   PHASE 8 — FINAL PROFESSIONAL POLISH
+   ========================================================= */
+
+
+/* ===================== BUTTON POLISH ===================== */
+
+button {
+    font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+
+/* ===================== CARD HOVER ===================== */
+
+.card {
+    transition:
+        transform 0.3s ease,
+        background-color 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+
+/* ===================== REFERENCE HOVER ===================== */
+
+.reference-item {
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        background-color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+.reference-item:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(119, 217, 220, 0.35);
+}
+
+
+/* ===================== COPY BUTTON ===================== */
+
+.copy-result {
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.copy-result:hover {
+    transform: translateY(-1px);
+}
+
+
+.copy-result:active {
+    transform: scale(0.96);
+}
+
+
+/* ===================== CLEAR HISTORY ===================== */
+
+.clear-history {
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.clear-history:hover {
+    transform: translateY(-1px);
+}
+
+
+/* ===================== INPUT ===================== */
+
+.input-wrapper {
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.35s ease;
+}
+
+
+.input-wrapper:focus-within {
+    border-color:
+        var(--accent);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(119, 217, 220, 0.08);
+}
+
+
+/* ===================== SELECT ===================== */
+
+select {
+    cursor: pointer;
+
+    transition:
+        border-color 0.25s ease,
+        background-color 0.35s ease,
+        color 0.35s ease;
+}
+
+
+select:focus {
+    border-color:
+        var(--accent);
+}
+
+
+/* ===================== SWAP BUTTON ===================== */
+
+.swap-button,
+.large-swap {
+    transition:
+        transform 0.3s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.swap-button:hover,
+.large-swap:hover {
+    transform:
+        rotate(180deg)
+        scale(1.05);
+}
+
+
+/* ===================== STATUS DOT ===================== */
+
+.status-dot {
+    animation:
+        statusPulse 2.2s ease-in-out infinite;
+}
+
+
+@keyframes statusPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.45;
+    }
+}
+
+
+/* ===================== RESULT ANIMATION ===================== */
+
+.result-update {
+    animation:
+        resultPop 0.35s ease;
+}
+
+
+@keyframes resultPop {
+
+    0% {
+        opacity: 0.35;
+        transform: translateY(5px) scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ===================== TEMPERATURE ICON ===================== */
+
+.temperature-icon {
+    transition:
+        transform 0.3s ease;
+}
+
+
+.status-card:hover .temperature-icon {
+    transform:
+        scale(1.08)
+        rotate(-3deg);
+}
+
+
+/* ===================== HISTORY ANIMATION ===================== */
+
+.history-item {
+    animation:
+        historyAppear 0.3s ease both;
+}
+
+
+@keyframes historyAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ===================== REDUCED MOTION ===================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+/* =========================================================
+   THERMOSENSE — FINAL THEME SYSTEM
+   ========================================================= */
+
+:root {
+    --bg-primary: #0b1016;
+    --bg-secondary: #121922;
+    --bg-card: rgba(22, 30, 40, 0.94);
+    --bg-card-solid: #161e28;
+    --bg-input: #111821;
+
+    --text-primary: #f4f7f8;
+    --text-secondary: #aab6bf;
+    --text-muted: #71808a;
+
+    --border-color: rgba(255, 255, 255, 0.09);
+
+    --accent: #77d9dc;
+    --accent-soft: rgba(119, 217, 220, 0.14);
+
+    --success: #61d39b;
+    --danger: #ef7777;
+
+    --page-gradient:
+        radial-gradient(
+            circle at 15% 5%,
+            rgba(119, 217, 220, 0.08),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(91, 126, 255, 0.07),
+            transparent 30%
+        );
+
+    --shadow-card:
+        0 18px 45px rgba(0, 0, 0, 0.20);
+}
+
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+[data-theme="light"] {
+
+    --bg-primary: #f4f7fa;
+    --bg-secondary: #ffffff;
+    --bg-card: rgba(255, 255, 255, 0.96);
+    --bg-card-solid: #ffffff;
+    --bg-input: #f1f5f8;
+
+    --text-primary: #17212b;
+    --text-secondary: #53616d;
+    --text-muted: #7c8993;
+
+    --border-color: rgba(20, 35, 50, 0.10);
+
+    --accent: #218f97;
+    --accent-soft: rgba(33, 143, 151, 0.11);
+
+    --success: #168a5a;
+    --danger: #d94d4d;
+
+    --page-gradient:
+        radial-gradient(
+            circle at 10% 5%,
+            rgba(91, 190, 197, 0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(99, 125, 220, 0.08),
+            transparent 30%
+        );
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+html,
+body {
+    background:
+        var(--page-gradient),
+        var(--bg-primary);
+
+    color: var(--text-primary);
+
+    transition:
+        background 0.35s ease,
+        color 0.35s ease;
+}
+
+
+/* =========================================================
+   MAIN AREAS
+   ========================================================= */
+
+.app-container {
+    background: transparent;
+}
+
+
+.main-content {
+    background: transparent;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+
+    background:
+        var(--bg-secondary);
+
+    border-color:
+        var(--border-color);
+
+    transition:
+        background-color 0.35s ease,
+        border-color 0.35s ease;
+}
+
+
+.brand-name {
+    color:
+        var(--text-primary);
+}
+
+
+.nav-item {
+
+    color:
+        var(--text-secondary);
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.nav-item:hover {
+
+    color:
+        var(--text-primary);
+
+    background:
+        var(--accent-soft);
+}
+
+
+.nav-item.active {
+
+    color:
+        var(--text-primary);
+
+    background:
+        var(--accent-soft);
+}
+
+
+.nav-icon {
+    color:
+        inherit;
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.page-heading h1 {
+
+    color:
+        var(--text-primary);
+}
+
+
+.page-heading p {
+
+    color:
+        var(--text-secondary);
+}
+
+
+.eyebrow {
+
+    color:
+        var(--accent);
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card {
+
+    background:
+        var(--bg-card);
+
+    border:
+        1px solid var(--border-color);
+
+    box-shadow:
+        var(--shadow-card);
+
+    color:
+        var(--text-primary);
+
+    transition:
+        background-color 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        transform 0.3s ease;
+}
+
+
+.card h2 {
+
+    color:
+        var(--text-primary);
+}
+
+
+.card-label {
+
+    color:
+        var(--text-muted);
+}
+
+
+/* =========================================================
+   CONVERTER
+   ========================================================= */
+
+.temperature-input label,
+.output-label,
+.select-group label {
+
+    color:
+        var(--text-muted);
+}
+
+
+.input-wrapper {
+
+    background:
+        var(--bg-input);
+
+    border-color:
+        var(--border-color);
+}
+
+
+.input-wrapper input {
+
+    color:
+        var(--text-primary);
+}
+
+
+.input-wrapper input::placeholder {
+
+    color:
+        var(--text-muted);
+}
+
+
+.input-unit {
+
+    color:
+        var(--accent);
+}
+
+
+.temperature-output {
+
+    color:
+        var(--text-primary);
+}
+
+
+.output-value {
+
+    color:
+        var(--text-primary);
+}
+
+
+.output-value span:last-child {
+
+    color:
+        var(--accent);
+}
+
+
+.copy-result {
+
+    color:
+        var(--accent);
+}
+
+
+/* =========================================================
+   SELECT BOXES
+   ========================================================= */
+
+select {
+
+    background:
+        var(--bg-input);
+
+    color:
+        var(--text-primary);
+
+    border:
+        1px solid var(--border-color);
+}
+
+
+select option {
+
+    background:
+        var(--bg-card-solid);
+
+    color:
+        var(--text-primary);
+}
+
+
+/* =========================================================
+   SWAP BUTTONS
+   ========================================================= */
+
+.swap-button,
+.large-swap {
+
+    background:
+        var(--accent-soft);
+
+    color:
+        var(--accent);
+
+    border-color:
+        var(--border-color);
+}
+
+
+/* =========================================================
+   CONVERTER FOOTER
+   ========================================================= */
+
+.converter-footer {
+
+    border-color:
+        var(--border-color);
+}
+
+
+.precision-control {
+
+    color:
+        var(--text-secondary);
+}
+
+
+.instant-label {
+
+    color:
+        var(--success);
+}
+
+
+/* =========================================================
+   STATUS CARD
+   ========================================================= */
+
+.status-temperature strong {
+
+    color:
+        var(--text-primary);
+}
+
+
+.temperature-category {
+
+    color:
+        var(--accent);
+}
+
+
+.temperature-description {
+
+    color:
+        var(--text-secondary);
+}
+
+
+/* =========================================================
+   SCALE
+   ========================================================= */
+
+.scale-labels,
+.scale-values {
+
+    color:
+        var(--text-secondary);
+}
+
+
+/* =========================================================
+   HISTORY
+   ========================================================= */
+
+.history-item {
+
+    background:
+        var(--accent-soft);
+
+    border-color:
+        var(--border-color);
+}
+
+
+.history-conversion {
+
+    color:
+        var(--text-primary);
+}
+
+
+.history-time {
+
+    color:
+        var(--text-muted);
+}
+
+
+.history-delete {
+
+    color:
+        var(--text-muted);
+}
+
+
+.history-empty {
+
+    color:
+        var(--text-muted);
+}
+
+
+/* =========================================================
+   REFERENCES
+   ========================================================= */
+
+.reference-item {
+
+    background:
+        var(--bg-input);
+
+    border:
+        1px solid var(--border-color);
+
+    color:
+        var(--text-primary);
+}
+
+
+.reference-item strong {
+
+    color:
+        var(--text-primary);
+}
+
+
+.reference-item small {
+
+    color:
+        var(--text-secondary);
+}
+
+
+/* =========================================================
+   THEME BUTTON
+   ========================================================= */
+
+.theme-toggle {
+
+    background:
+        var(--accent-soft);
+
+    color:
+        var(--text-primary);
+
+    border:
+        1px solid var(--border-color);
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.theme-toggle:hover {
+
+    background:
+        var(--accent);
+
+    color:
+        #ffffff;
+
+    transform:
+        rotate(12deg)
+        scale(1.05);
+}
+
+
+/* =========================================================
+   UNIT BUTTONS
+   ========================================================= */
+
+.unit-toggle {
+
+    color:
+        var(--text-secondary);
+}
+
+
+.unit-toggle.active {
+
+    background:
+        var(--accent);
+
+    color:
+        #ffffff;
+}
+
+
+/* =========================================================
+   SMOOTH THEME TRANSITION
+   ========================================================= */
+
+.sidebar,
+.card,
+.input-wrapper,
+select,
+.reference-item,
+.history-item,
+.nav-item,
+.theme-toggle,
+.unit-toggle,
+.page-heading h1,
+.page-heading p,
+.card h2,
+.card-label,
+.temperature-description,
+.history-conversion,
+.history-time {
+    transition:
+        background-color 0.35s ease,
+        color 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+
+
+
+
+/* =========================================================
+   THERMOSENSE — DYNAMIC ENVIRONMENT THEMES
+   ONLY VISUAL EFFECTS — NO LAYOUT CHANGES
+========================================================= */
+
+
+/* =========================================================
+   1. THEME VARIABLES
+========================================================= */
+
+:root {
+    /* Night theme */
+    --environment-bg-1: rgba(35, 70, 105, 0.10);
+    --environment-bg-2: rgba(76, 94, 150, 0.08);
+    --environment-glow: rgba(119, 217, 220, 0.05);
+
+    --sun-opacity: 0;
+    --sun-size: 0px;
+
+    --rain-opacity: 0;
+    --rain-speed: 1s;
+
+    --environment-transition:
+        background 0.8s ease,
+        box-shadow 0.8s ease,
+        opacity 0.8s ease;
+}
+
+
+/* =========================================================
+   2. MORNING / DAY THEME
+========================================================= */
+
+[data-theme="light"] {
+
+    --environment-bg-1:
+        rgba(255, 194, 94, 0.12);
+
+    --environment-bg-2:
+        rgba(255, 224, 157, 0.10);
+
+    --environment-glow:
+        rgba(255, 214, 120, 0.10);
+}
+
+
+/* =========================================================
+   3. NIGHT THEME
+========================================================= */
+
+[data-theme="dark"] {
+
+    --environment-bg-1:
+        rgba(30, 65, 110, 0.12);
+
+    --environment-bg-2:
+        rgba(70, 76, 140, 0.10);
+
+    --environment-glow:
+        rgba(100, 150, 220, 0.05);
+}
+
+
+/* =========================================================
+   4. ENVIRONMENT BACKGROUND
+========================================================= */
+
+body {
+
+    position: relative;
+
+    isolation: isolate;
+
+    background:
+        radial-gradient(
+            circle at 12% 8%,
+            var(--environment-bg-1),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 88% 85%,
+            var(--environment-bg-2),
+            transparent 35%
+        ),
+        var(--page-gradient),
+        var(--bg-primary);
+
+    transition:
+        background 0.8s ease,
+        color 0.5s ease;
+}
+
+
+/* =========================================================
+   5. AMBIENT ENVIRONMENT LAYER
+========================================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: -2;
+
+    background:
+        radial-gradient(
+            circle at 80% 12%,
+            var(--environment-glow),
+            transparent 35%
+        );
+
+    opacity: 1;
+
+    transition:
+        background 1s ease,
+        opacity 0.8s ease;
+}
+
+
+/* =========================================================
+   6. SUNLIGHT EFFECT
+========================================================= */
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: var(--sun-size);
+    height: var(--sun-size);
+
+    right: 7%;
+    top: 5%;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    opacity: var(--sun-opacity);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 245, 190, 0.95) 0%,
+            rgba(255, 211, 104, 0.65) 18%,
+            rgba(255, 185, 75, 0.25) 42%,
+            transparent 72%
+        );
+
+    filter: blur(2px);
+
+    box-shadow:
+        0 0 60px rgba(255, 205, 95, 0.22),
+        0 0 140px rgba(255, 190, 75, 0.16),
+        0 0 240px rgba(255, 175, 65, 0.10);
+
+    transition:
+        width 1s ease,
+        height 1s ease,
+        opacity 1s ease,
+        box-shadow 1s ease;
+}
+
+
+/* =========================================================
+   7. SUNLIGHT INTENSITY LEVELS
+========================================================= */
+
+/* Warm */
+
+body.temperature-warm {
+
+    --environment-bg-1:
+        rgba(255, 190, 90, 0.08);
+
+    --environment-bg-2:
+        rgba(255, 215, 125, 0.06);
+
+    --sun-opacity: 0.20;
+
+    --sun-size: 180px;
+}
+
+
+/* Hot */
+
+body.temperature-hot {
+
+    --environment-bg-1:
+        rgba(255, 150, 55, 0.13);
+
+    --environment-bg-2:
+        rgba(255, 190, 70, 0.10);
+
+    --environment-glow:
+        rgba(255, 190, 70, 0.12);
+
+    --sun-opacity: 0.48;
+
+    --sun-size: 260px;
+}
+
+
+/* Extremely hot */
+
+body.temperature-extreme {
+
+    --environment-bg-1:
+        rgba(255, 120, 35, 0.17);
+
+    --environment-bg-2:
+        rgba(255, 175, 50, 0.13);
+
+    --environment-glow:
+        rgba(255, 165, 50, 0.15);
+
+    --sun-opacity: 0.72;
+
+    --sun-size: 350px;
+}
+
+
+/* =========================================================
+   8. SUBTLE HEAT SHIMMER
+========================================================= */
+
+body.temperature-hot .main-content,
+body.temperature-extreme .main-content {
+
+    animation:
+        heatAtmosphere 4s ease-in-out infinite;
+}
+
+
+@keyframes heatAtmosphere {
+
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.015);
+    }
+}
+
+
+/* =========================================================
+   9. RAIN CONTAINER
+========================================================= */
+
+#weatherEffects {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 50;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.8s ease;
+}
+
+
+/* =========================================================
+   10. RAIN DROPLETS
+========================================================= */
+
+.rain-drop {
+
+    position: absolute;
+
+    top: -15%;
+
+    width: 1px;
+
+    height: 45px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(190, 225, 255, 0.75)
+        );
+
+    opacity: 0.45;
+
+    transform: rotate(12deg);
+
+    animation:
+        rainFall var(--rain-speed)
+        linear infinite;
+}
+
+
+@keyframes rainFall {
+
+    0% {
+        transform:
+            translate3d(0, -10vh, 0)
+            rotate(12deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.45;
+    }
+
+    90% {
+        opacity: 0.45;
+    }
+
+    100% {
+        transform:
+            translate3d(-35px, 115vh, 0)
+            rotate(12deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   11. LIGHT DRIZZLE
+========================================================= */
+
+body.rain-light {
+
+    --rain-opacity: 0.45;
+
+    --rain-speed: 1.8s;
+}
+
+
+body.rain-light #weatherEffects {
+
+    opacity: 0.45;
+}
+
+
+/* =========================================================
+   12. MODERATE RAIN
+========================================================= */
+
+body.rain-medium {
+
+    --rain-opacity: 0.65;
+
+    --rain-speed: 1.15s;
+}
+
+
+body.rain-medium #weatherEffects {
+
+    opacity: 0.65;
+}
+
+
+/* =========================================================
+   13. HEAVY RAIN
+========================================================= */
+
+body.rain-heavy {
+
+    --rain-opacity: 0.90;
+
+    --rain-speed: 0.7s;
+}
+
+
+body.rain-heavy #weatherEffects {
+
+    opacity: 0.90;
+}
+
+
+/* =========================================================
+   14. RAINY ATMOSPHERE
+========================================================= */
+
+body.rain-light,
+body.rain-medium,
+body.rain-heavy {
+
+    --environment-bg-1:
+        rgba(80, 125, 165, 0.12);
+
+    --environment-bg-2:
+        rgba(65, 90, 125, 0.10);
+}
+
+
+/* =========================================================
+   15. HEAVY RAIN DARKER ATMOSPHERE
+========================================================= */
+
+body.rain-heavy {
+
+    --environment-bg-1:
+        rgba(45, 75, 105, 0.18);
+
+    --environment-bg-2:
+        rgba(40, 55, 85, 0.16);
+
+    --environment-glow:
+        rgba(90, 140, 180, 0.06);
+}
+
+
+/* =========================================================
+   16. RAIN CARD ATMOSPHERE
+========================================================= */
+
+body.rain-light .card,
+body.rain-medium .card,
+body.rain-heavy .card {
+
+    box-shadow:
+        0 18px 50px rgba(25, 65, 95, 0.16);
+
+    transition:
+        background 0.8s ease,
+        box-shadow 0.8s ease,
+        border-color 0.8s ease;
+}
+
+
+/* =========================================================
+   17. TEMPERATURE TRANSITIONS
+========================================================= */
+
+body.temperature-cold,
+body.temperature-moderate,
+body.temperature-warm,
+body.temperature-hot,
+body.temperature-extreme {
+
+    transition:
+        background 1s ease,
+        color 0.5s ease;
+}
+
+
+/* =========================================================
+   18. COLD ATMOSPHERE
+========================================================= */
+
+body.temperature-cold {
+
+    --environment-bg-1:
+        rgba(90, 145, 205, 0.10);
+
+    --environment-bg-2:
+        rgba(110, 145, 210, 0.07);
+
+    --environment-glow:
+        rgba(120, 180, 235, 0.06);
+
+    --sun-opacity: 0;
+
+    --sun-size: 0px;
+}
+
+
+/* =========================================================
+   19. MODERATE ATMOSPHERE
+========================================================= */
+
+body.temperature-moderate {
+
+    --environment-bg-1:
+        rgba(120, 185, 175, 0.06);
+
+    --environment-bg-2:
+        rgba(130, 190, 180, 0.05);
+
+    --environment-glow:
+        rgba(140, 210, 195, 0.05);
+
+    --sun-opacity: 0.05;
+
+    --sun-size: 100px;
+}
+
+
+/* =========================================================
+   20. PREVENT EFFECTS FROM AFFECTING UI LAYOUT
+========================================================= */
+
+#weatherEffects,
+body::before,
+body::after {
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   21. KEEP CONTENT ABOVE EFFECTS
+========================================================= */
+
+.app-container,
+.sidebar,
+.main-content {
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   22. SMOOTH WEATHER TRANSITION
+========================================================= */
+
+.card,
+.sidebar,
+.topbar-actions,
+.input-wrapper,
+select,
+.reference-item,
+.history-item {
+
+    transition:
+        background-color 0.7s ease,
+        border-color 0.7s ease,
+        box-shadow 0.7s ease,
+        color 0.5s ease;
+}
+
+
+/* =========================================================
+   23. REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    body.temperature-hot .main-content,
+    body.temperature-extreme .main-content {
+
+        animation: none;
+    }
+
+    .rain-drop {
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+/* =========================================================
+   THERMOSENSE — TEMPERATURE ENVIRONMENT EFFECTS
+   Only visual effects based on temperature/weather
+========================================================= */
+
+/* =========================================================
+   ENVIRONMENT LAYER
+========================================================= */
+
+.environment-layer {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.8s ease,
+        background 0.8s ease;
+}
+
+
+/* Keep existing application above environment */
+
+.app-container {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================================================
+   HOT / SUMMER ENVIRONMENT
+========================================================= */
+
+body.temperature-hot .environment-layer {
+    opacity: 1;
+
+    background:
+        radial-gradient(
+            circle at 78% 12%,
+            rgba(255, 190, 80, 0.20),
+            transparent 20%
+        ),
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(255, 140, 50, 0.10),
+            transparent 35%
+        );
+
+    animation:
+        summerGlow 4s ease-in-out infinite alternate;
+}
+
+
+@keyframes summerGlow {
+
+    from {
+        opacity: 0.55;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================================================
+   SUNLIGHT
+========================================================= */
+
+.sun-effect {
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    top: -90px;
+    right: 8%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 245, 190, 0.85) 0%,
+            rgba(255, 196, 80, 0.35) 28%,
+            rgba(255, 170, 50, 0.12) 52%,
+            transparent 72%
+        );
+
+    filter: blur(2px);
+
+    opacity: 0;
+
+    transform: scale(0.7);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+
+}
+
+
+/* Mild warmth */
+
+body.temperature-warm .sun-effect {
+
+    opacity: 0.45;
+
+    transform: scale(0.8);
+
+}
+
+
+/* Hot */
+
+body.temperature-hot .sun-effect {
+
+    opacity: 0.75;
+
+    transform: scale(1);
+
+}
+
+
+/* Very hot */
+
+body.temperature-extreme .sun-effect {
+
+    opacity: 1;
+
+    transform: scale(1.25);
+
+    animation:
+        sunPulse 2.8s ease-in-out infinite;
+
+}
+
+
+@keyframes sunPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1.18);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.3);
+
+    }
+
+}
+
+
+/* =========================================================
+   SUN RAYS
+========================================================= */
+
+.sun-rays {
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    top: -220px;
+    right: -80px;
+
+    border-radius: 50%;
+
+    opacity: 0;
+
+    background:
+        repeating-conic-gradient(
+            from 0deg,
+            rgba(255, 211, 112, 0.08) 0deg,
+            rgba(255, 211, 112, 0.08) 8deg,
+            transparent 8deg,
+            transparent 22deg
+        );
+
+    filter: blur(4px);
+
+    transform-origin: center;
+
+}
+
+
+body.temperature-hot .sun-rays {
+
+    opacity: 0.65;
+
+    animation:
+        rotateSun 30s linear infinite;
+
+}
+
+
+body.temperature-extreme .sun-rays {
+
+    opacity: 0.9;
+
+    animation:
+        rotateSun 18s linear infinite;
+
+}
+
+
+@keyframes rotateSun {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   WARM SCREEN GLOW
+========================================================= */
+
+body.temperature-warm::after {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    background:
+        radial-gradient(
+            circle at 80% 10%,
+            rgba(255, 183, 77, 0.08),
+            transparent 35%
+        );
+
+    opacity: 1;
+}
+
+
+body.temperature-hot::after {
+
+    background:
+        radial-gradient(
+            circle at 80% 10%,
+            rgba(255, 166, 61, 0.14),
+            transparent 38%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(255, 180, 70, 0.025),
+            transparent 45%
+        );
+
+}
+
+
+/* =========================================================
+   RAIN ENVIRONMENT
+========================================================= */
+
+.rain-container {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.7s ease;
+
+}
+
+
+/* Light rain */
+
+body.temperature-rain-light .rain-container {
+
+    opacity: 0.55;
+
+}
+
+
+/* Heavy rain */
+
+body.temperature-rain-heavy .rain-container {
+
+    opacity: 0.9;
+
+}
+
+
+/* =========================================================
+   RAIN DROPLETS
+========================================================= */
+
+.rain-drop {
+
+    position: absolute;
+
+    top: -120px;
+
+    width: 1px;
+
+    height: 55px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(180, 220, 255, 0.7)
+        );
+
+    transform:
+        rotate(14deg);
+
+    animation:
+        rainFall linear infinite;
+
+}
+
+
+/* Light rain */
+
+body.temperature-rain-light .rain-drop {
+
+    height: 38px;
+
+    opacity: 0.45;
+
+}
+
+
+/* Heavy rain */
+
+body.temperature-rain-heavy .rain-drop {
+
+    height: 75px;
+
+    opacity: 0.75;
+
+}
+
+
+/* =========================================================
+   RAIN FALL
+========================================================= */
+
+@keyframes rainFall {
+
+    from {
+
+        transform:
+            translate3d(0, -120px, 0)
+            rotate(14deg);
+
+    }
+
+    to {
+
+        transform:
+            translate3d(-100px, 110vh, 0)
+            rotate(14deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   RAIN SCREEN TINT
+========================================================= */
+
+body.temperature-rain-light::after {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(90, 135, 170, 0.045),
+            transparent 55%
+        );
+
+}
+
+
+body.temperature-rain-heavy::after {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(65, 105, 145, 0.12),
+            rgba(45, 75, 105, 0.035)
+        );
+
+}
+
+
+/* =========================================================
+   CLOUD EFFECT
+========================================================= */
+
+.cloud-effect {
+
+    position: absolute;
+
+    width: 380px;
+    height: 120px;
+
+    top: 8%;
+
+    left: -420px;
+
+    border-radius: 100px;
+
+    background:
+        rgba(160, 180, 200, 0.045);
+
+    filter: blur(18px);
+
+    opacity: 0;
+
+}
+
+
+/* Rain clouds */
+
+body.temperature-rain-light .cloud-effect {
+
+    opacity: 0.65;
+
+    animation:
+        cloudMove 35s linear infinite;
+
+}
+
+
+body.temperature-rain-heavy .cloud-effect {
+
+    opacity: 0.9;
+
+    animation:
+        cloudMove 22s linear infinite;
+
+}
+
+
+@keyframes cloudMove {
+
+    from {
+
+        transform:
+            translateX(0);
+
+    }
+
+    to {
+
+        transform:
+            translateX(calc(100vw + 500px));
+
+    }
+
+}
+
+
+/* =========================================================
+   TEMPERATURE TRANSITION
+========================================================= */
+
+.environment-layer,
+.sun-effect,
+.sun-rays,
+.rain-container,
+.cloud-effect {
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+
+}
+
+
+/* =========================================================
+   COLD ENVIRONMENT
+========================================================= */
+
+body.temperature-cold .environment-layer {
+
+    opacity: 1;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(105, 180, 255, 0.08),
+            transparent 32%
+        );
+
+}
+
+
+/* =========================================================
+   FREEZING ENVIRONMENT
+========================================================= */
+
+body.temperature-freezing .environment-layer {
+
+    opacity: 1;
+
+    background:
+        radial-gradient(
+            circle at 20% 15%,
+            rgba(120, 190, 255, 0.14),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(100, 170, 230, 0.035),
+            transparent 60%
+        );
+
+}
+
+
+/* =========================================================
+   WEATHER EFFECT PERFORMANCE
+========================================================= */
+
+.rain-drop,
+.sun-rays,
+.cloud-effect {
+
+    will-change:
+        transform,
+        opacity;
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .rain-drop,
+    .sun-rays,
+    .cloud-effect,
+    .sun-effect {
+
+        animation: none !important;
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   THERMOSENSE — DYNAMIC TEMPERATURE EFFECT ENGINE
+   Only controls visual environment effects.
+   Does NOT change dashboard structure/layout.
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* =====================================================
+       CREATE ENVIRONMENT LAYERS
+    ===================================================== */
+
+    let environmentLayer =
+        document.querySelector(".environment-layer");
+
+    if (!environmentLayer) {
+
+        environmentLayer =
+            document.createElement("div");
+
+        environmentLayer.className =
+            "environment-layer";
+
+        environmentLayer.innerHTML = `
+            <div class="sun-effect"></div>
+            <div class="sun-rays"></div>
+
+            <div class="cloud-effect"></div>
+
+            <div class="rain-container"></div>
+        `;
+
+        document.body.prepend(environmentLayer);
+    }
+
+
+    const rainContainer =
+        environmentLayer.querySelector(".rain-container");
+
+
+    /* =====================================================
+       REMOVE OLD RAIN
+    ===================================================== */
+
+    function clearRain() {
+
+        rainContainer.innerHTML = "";
+
+    }
+
+
+    /* =====================================================
+       CREATE RAIN
+    ===================================================== */
+
+    function createRain(intensity = "light") {
+
+        clearRain();
+
+        let amount = 35;
+
+        if (intensity === "medium") {
+            amount = 65;
+        }
+
+        if (intensity === "heavy") {
+            amount = 110;
+        }
+
+
+        for (let i = 0; i < amount; i++) {
+
+            const drop =
+                document.createElement("span");
+
+            drop.className = "rain-drop";
+
+
+            /* Random horizontal position */
+
+            drop.style.left =
+                `${Math.random() * 100}%`;
+
+
+            /* Random animation delay */
+
+            drop.style.animationDelay =
+                `${Math.random() * 2.5}s`;
+
+
+            /* Slightly different speeds */
+
+            if (intensity === "light") {
+
+                drop.style.animationDuration =
+                    `${1.4 + Math.random() * 1.4}s`;
+
+            }
+
+            else if (intensity === "medium") {
+
+                drop.style.animationDuration =
+                    `${0.9 + Math.random() * 0.8}s`;
+
+            }
+
+            else {
+
+                drop.style.animationDuration =
+                    `${0.55 + Math.random() * 0.5}s`;
+
+            }
+
+
+            /* Different drop lengths */
+
+            if (intensity === "heavy") {
+
+                drop.style.height =
+                    `${55 + Math.random() * 35}px`;
+
+            }
+
+            else {
+
+                drop.style.height =
+                    `${30 + Math.random() * 25}px`;
+
+            }
+
+
+            rainContainer.appendChild(drop);
+        }
+    }
+
+
+    /* =====================================================
+       RESET ENVIRONMENT
+    ===================================================== */
+
+    function resetEnvironment() {
+
+        document.body.classList.remove(
+            "temperature-freezing",
+            "temperature-cold",
+            "temperature-moderate",
+            "temperature-warm",
+            "temperature-hot",
+            "temperature-extreme",
+
+            "temperature-rain-light",
+            "temperature-rain-medium",
+            "temperature-rain-heavy",
+
+            "rain-light",
+            "rain-medium",
+            "rain-heavy"
+        );
+
+        clearRain();
+    }
+
+
+    /* =====================================================
+       TEMPERATURE VISUAL CLASSIFICATION
+    ===================================================== */
+
+    function updateTemperatureEnvironment(
+        temperature,
+        unit = "C"
+    ) {
+
+        let celsius = Number(temperature);
+
+        if (Number.isNaN(celsius)) {
+            return;
+        }
+
+
+        /* -----------------------------------------------
+           Convert Fahrenheit → Celsius
+        ------------------------------------------------ */
+
+        if (
+            unit === "F" ||
+            unit === "°F"
+        ) {
+
+            celsius =
+                (celsius - 32) * 5 / 9;
+
+        }
+
+
+        resetEnvironment();
+
+
+        /* =================================================
+           FREEZING
+        ================================================= */
+
+        if (celsius <= 0) {
+
+            document.body.classList.add(
+                "temperature-freezing"
+            );
+
+            return;
+        }
+
+
+        /* =================================================
+           COLD
+        ================================================= */
+
+        if (celsius > 0 && celsius < 15) {
+
+            document.body.classList.add(
+                "temperature-cold"
+            );
+
+            return;
+        }
+
+
+        /* =================================================
+           MODERATE
+        ================================================= */
+
+        if (celsius >= 15 && celsius < 25) {
+
+            document.body.classList.add(
+                "temperature-moderate"
+            );
+
+            return;
+        }
+
+
+        /* =================================================
+           WARM
+        ================================================= */
+
+        if (celsius >= 25 && celsius < 32) {
+
+            document.body.classList.add(
+                "temperature-warm"
+            );
+
+            return;
+        }
+
+
+        /* =================================================
+           HOT
+        ================================================= */
+
+        if (celsius >= 32 && celsius < 40) {
+
+            document.body.classList.add(
+                "temperature-hot"
+            );
+
+            return;
+        }
+
+
+        /* =================================================
+           EXTREME HEAT
+        ================================================= */
+
+        if (celsius >= 40) {
+
+            document.body.classList.add(
+                "temperature-extreme"
+            );
+
+        }
+    }
+
+
+    /* =====================================================
+       RAIN EFFECT
+       
+       Use this function whenever your application knows
+       the current rain intensity.
+    ===================================================== */
+
+    function updateRainEffect(intensity) {
+
+        document.body.classList.remove(
+            "temperature-rain-light",
+            "temperature-rain-medium",
+            "temperature-rain-heavy",
+
+            "rain-light",
+            "rain-medium",
+            "rain-heavy"
+        );
+
+
+        if (
+            !intensity ||
+            intensity === "none" ||
+            intensity === "clear"
+        ) {
+
+            clearRain();
+
+            return;
+        }
+
+
+        if (
+            intensity === "light" ||
+            intensity === "drizzle"
+        ) {
+
+            document.body.classList.add(
+                "temperature-rain-light",
+                "rain-light"
+            );
+
+            createRain("light");
+
+            return;
+        }
+
+
+        if (
+            intensity === "medium" ||
+            intensity === "moderate"
+        ) {
+
+            document.body.classList.add(
+                "temperature-rain-medium",
+                "rain-medium"
+            );
+
+            createRain("medium");
+
+            return;
+        }
+
+
+        if (
+            intensity === "heavy" ||
+            intensity === "storm"
+        ) {
+
+            document.body.classList.add(
+                "temperature-rain-heavy",
+                "rain-heavy"
+            );
+
+            createRain("heavy");
+
+            return;
+        }
+    }
+
+
+    /* =====================================================
+       CONNECT WITH RESULT VALUE
+       
+       Whenever #resultValue changes, this automatically
+       updates the environment.
+    ===================================================== */
+
+    const resultValue =
+        document.getElementById("resultValue");
+
+
+    if (resultValue) {
+
+        const observer =
+            new MutationObserver(() => {
+
+                const value =
+                    parseFloat(
+                        resultValue.textContent
+                    );
+
+                if (!Number.isNaN(value)) {
+
+                    /*
+                     * Your existing result unit is used
+                     * to determine Celsius/Fahrenheit.
+                     */
+
+                    const resultUnit =
+                        document
+                            .getElementById("resultUnit");
+
+
+                    let unit = "C";
+
+
+                    if (resultUnit) {
+
+                        const text =
+                            resultUnit.textContent
+                                .trim()
+                                .toUpperCase();
+
+                        if (text.includes("F")) {
+                            unit = "F";
+                        }
+                    }
+
+
+                    updateTemperatureEnvironment(
+                        value,
+                        unit
+                    );
+                }
+            });
+
+
+        observer.observe(
+            resultValue,
+            {
+                childList: true,
+                characterData: true,
+                subtree: true
+            }
+        );
+    }
+
+
+    /* =====================================================
+       EXPOSE FUNCTIONS
+       
+       This allows your existing converter code to call:
+
+       updateTemperatureEnvironment(value, unit)
+
+       updateRainEffect("light")
+       updateRainEffect("medium")
+       updateRainEffect("heavy")
+    ===================================================== */
+
+    window.updateTemperatureEnvironment =
+        updateTemperatureEnvironment;
+
+    window.updateRainEffect =
+        updateRainEffect;
+
+
+    /* =====================================================
+       INITIAL STATE
+    ===================================================== */
+
+    resetEnvironment();
+
+});
+/* =========================================================
+   THERMOSENSE — MORNING / NIGHT THEME
+   Only controls theme appearance.
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const themeButton =
+        document.querySelector(
+            ".theme-toggle"
+        );
+
+
+    if (!themeButton) {
+        return;
+    }
+
+
+    /* =====================================================
+       FIND / CREATE THEME ICON
+    ===================================================== */
+
+    let themeIcon =
+        themeButton.querySelector(
+            ".theme-icon"
+        );
+
+
+    if (!themeIcon) {
+
+        themeIcon =
+            document.createElement("span");
+
+        themeIcon.className =
+            "theme-icon";
+
+        themeButton.appendChild(
+            themeIcon
+        );
+    }
+
+
+    /* =====================================================
+       APPLY THEME
+    ===================================================== */
+
+    function applyTheme(theme) {
+
+        document.documentElement
+            .setAttribute(
+                "data-theme",
+                theme
+            );
+
+
+        if (theme === "light") {
+
+            themeIcon.textContent = "☀️";
+
+            themeButton.setAttribute(
+                "aria-label",
+                "Switch to night mode"
+            );
+
+            themeButton.setAttribute(
+                "title",
+                "Night mode"
+            );
+
+        } else {
+
+            themeIcon.textContent = "🌙";
+
+            themeButton.setAttribute(
+                "aria-label",
+                "Switch to morning mode"
+            );
+
+            themeButton.setAttribute(
+                "title",
+                "Morning mode"
+            );
+        }
+
+
+        localStorage.setItem(
+            "thermosense-theme",
+            theme
+        );
+    }
+
+
+    /* =====================================================
+       LOAD SAVED THEME
+    ===================================================== */
+
+    const savedTheme =
+        localStorage.getItem(
+            "thermosense-theme"
+        );
+
+
+    if (savedTheme === "light") {
+
+        applyTheme("light");
+
+    } else {
+
+        applyTheme("dark");
+
+    }
+
+
+    /* =====================================================
+       THEME BUTTON CLICK
+    ===================================================== */
+
+    themeButton.addEventListener(
+        "click",
+        () => {
+
+            const currentTheme =
+                document.documentElement
+                    .getAttribute(
+                        "data-theme"
+                    );
+
+
+            if (
+                currentTheme === "light"
+            ) {
+
+                applyTheme("dark");
+
+            } else {
+
+                applyTheme("light");
+
+            }
+
+        }
+    );
+
+});
+
+/* =========================================================
+   THERMOSENSE — FINAL LAYOUT + PREMIUM THEME OVERRIDES
+   Paste at the VERY END of style.css
+   ========================================================= */
+
+
+/* =========================================================
+   1. SIDEBAR — REMOVE HUGE EMPTY SPACE
+   ========================================================= */
+
+.sidebar {
+    justify-content: flex-start;
+}
+
+
+/* References → Settings → Appearance
+   with NO huge vertical gap */
+
+.sidebar-bottom {
+    margin-top: 8px !important;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    width: 100%;
+}
+
+
+/* Keep sidebar navigation compact */
+
+.navigation {
+    gap: 6px;
+}
+
+
+/* Make every sidebar item use the complete sidebar width */
+
+.nav-item {
+    width: 100%;
+    min-height: 46px;
+
+    padding: 12px 18px;
+
+    border-radius: 11px;
+}
+
+
+/* Settings / Appearance same width as other items */
+
+.sidebar-bottom .nav-item {
+    width: 100%;
+}
+
+
+/* =========================================================
+   2. SIDEBAR — PREMIUM MODERN LOOK
+   ========================================================= */
+
+.sidebar {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(17, 25, 34, 0.98) 0%,
+            rgba(10, 16, 23, 0.99) 100%
+        );
+
+    border-right:
+        1px solid rgba(119, 217, 220, 0.08);
+
+    box-shadow:
+        12px 0 40px rgba(0, 0, 0, 0.12);
+}
+
+
+.nav-item {
+    position: relative;
+
+    color: var(--text-secondary);
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.nav-item:hover {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(119, 217, 220, 0.10),
+            rgba(119, 217, 220, 0.035)
+        );
+
+    color: var(--text-primary);
+
+    transform: translateX(3px);
+}
+
+
+.nav-item.active {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(119, 217, 220, 0.16),
+            rgba(119, 217, 220, 0.045)
+        );
+
+    color: var(--accent);
+
+    box-shadow:
+        inset 3px 0 0 var(--accent),
+        0 8px 25px rgba(119, 217, 220, 0.05);
+}
+
+
+/* =========================================================
+   3. MAIN CONTENT — USE MORE SCREEN WIDTH
+   ========================================================= */
+
+.main-content {
+    margin-left: var(--sidebar-width);
+
+    width: calc(100% - var(--sidebar-width));
+
+    padding:
+        32px 28px 50px;
+}
+
+
+/* =========================================================
+   4. MAKE MAIN CONVERTER AREA WIDER
+   ========================================================= */
+
+.dashboard-grid {
+    width: 100%;
+
+    grid-template-columns:
+        minmax(0, 2.15fr)
+        minmax(330px, 0.85fr);
+
+    gap: 16px;
+}
+
+
+/* Converter card gets more horizontal space */
+
+.converter-card {
+    min-width: 0;
+    width: 100%;
+}
+
+
+/* Status card also fills its column */
+
+.status-card {
+    width: 100%;
+}
+
+
+/* History / References use complete available width */
+
+.history-card,
+.references-card,
+.scale-card {
+    width: 100%;
+}
+
+
+/* =========================================================
+   5. CONVERTER CONTENT — USE SPACE BETTER
+   ========================================================= */
+
+.converter-area {
+    grid-template-columns:
+        minmax(0, 1.15fr)
+        auto
+        minmax(0, 1fr);
+
+    gap: 26px;
+}
+
+
+.unit-selection {
+    grid-template-columns:
+        minmax(0, 1fr)
+        45px
+        minmax(0, 1fr);
+
+    gap: 12px;
+}
+
+
+.input-wrapper input {
+    width: 100%;
+}
+
+
+/* =========================================================
+   6. CARDS — MORE PREMIUM / MODERN
+   ========================================================= */
+
+.card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(24, 32, 42, 0.96),
+            rgba(15, 22, 30, 0.97)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.075);
+
+    box-shadow:
+        0 18px 55px rgba(0, 0, 0, 0.20),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+    border-radius: 22px;
+}
+
+
+.card:hover {
+    border-color:
+        rgba(119, 217, 220, 0.16);
+
+    box-shadow:
+        0 24px 65px rgba(0, 0, 0, 0.24),
+        0 0 35px rgba(119, 217, 220, 0.025);
+}
+
+
+/* =========================================================
+   7. PREMIUM MORNING THEME
+   ========================================================= */
+
+[data-theme="light"] {
+
+    --bg-primary: #eef5f7;
+    --bg-secondary: #ffffff;
+
+    --bg-card:
+        rgba(255, 255, 255, 0.88);
+
+    --bg-card-solid: #ffffff;
+
+    --bg-input:
+        #f5f9fa;
+
+    --text-primary:
+        #17252b;
+
+    --text-secondary:
+        #5e7078;
+
+    --text-muted:
+        #87969d;
+
+    --border-color:
+        rgba(32, 62, 72, 0.10);
+
+    --accent:
+        #168d95;
+
+    --accent-soft:
+        rgba(22, 141, 149, 0.10);
+
+    --success:
+        #218c62;
+
+    --danger:
+        #d95353;
+
+    --shadow-card:
+        0 18px 50px rgba(46, 82, 91, 0.10);
+
+    --page-gradient:
+        radial-gradient(
+            circle at 8% 4%,
+            rgba(255, 213, 125, 0.22),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 88% 15%,
+            rgba(127, 210, 220, 0.16),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 80% 90%,
+            rgba(150, 180, 240, 0.10),
+            transparent 32%
+        );
+}
+
+
+/* Morning page */
+
+[data-theme="light"] body {
+    background:
+        var(--page-gradient),
+        linear-gradient(
+            135deg,
+            #eef7f8,
+            #f8fbfc 50%,
+            #edf4f8
+        );
+
+    color:
+        var(--text-primary);
+}
+
+
+/* Morning sidebar */
+
+[data-theme="light"] .sidebar {
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f3f8f9 100%
+        );
+
+    border-right:
+        1px solid rgba(30, 80, 90, 0.09);
+
+    box-shadow:
+        10px 0 35px rgba(40, 90, 100, 0.06);
+}
+
+
+/* Morning cards */
+
+[data-theme="light"] .card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(248, 252, 253, 0.96)
+        );
+
+    border-color:
+        rgba(35, 75, 85, 0.10);
+
+    box-shadow:
+        0 18px 50px rgba(50, 90, 100, 0.09);
+}
+
+
+/* Morning nav */
+
+[data-theme="light"] .nav-item:hover {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(22, 141, 149, 0.10),
+            rgba(22, 141, 149, 0.035)
+        );
+}
+
+
+[data-theme="light"] .nav-item.active {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(22, 141, 149, 0.14),
+            rgba(22, 141, 149, 0.045)
+        );
+
+    color:
+        var(--accent);
+
+    box-shadow:
+        inset 3px 0 0 var(--accent);
+}
+
+
+/* =========================================================
+   8. NIGHT THEME — DEEP PREMIUM
+   ========================================================= */
+
+[data-theme="dark"] {
+
+    --bg-primary:
+        #080e14;
+
+    --bg-secondary:
+        #0d151e;
+
+    --bg-card:
+        rgba(18, 27, 37, 0.95);
+
+    --bg-card-solid:
+        #121b25;
+
+    --bg-input:
+        #0d151e;
+
+    --text-primary:
+        #f3f8fa;
+
+    --text-secondary:
+        #a4b2bb;
+
+    --text-muted:
+        #6e7d87;
+
+    --border-color:
+        rgba(150, 220, 225, 0.085);
+
+    --accent:
+        #78dce0;
+
+    --accent-soft:
+        rgba(120, 220, 224, 0.11);
+
+    --page-gradient:
+        radial-gradient(
+            circle at 12% 5%,
+            rgba(50, 115, 145, 0.14),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(74, 75, 145, 0.11),
+            transparent 34%
+        );
+}
+
+
+[data-theme="dark"] body {
+
+    background:
+        var(--page-gradient),
+        linear-gradient(
+            135deg,
+            #080e14,
+            #0b1119 55%,
+            #080d14
+        );
+}
+
+
+/* =========================================================
+   9. THEME BUTTON — GORGEOUS
+   ========================================================= */
+
+.theme-toggle {
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        var(--accent-soft);
+
+    border:
+        1px solid var(--border-color);
+
+    color:
+        var(--text-primary);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.theme-toggle:hover {
+
+    transform:
+        translateY(-2px)
+        rotate(5deg);
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+    box-shadow:
+        0 10px 30px rgba(119, 217, 220, 0.20);
+}
+
+
+.theme-icon {
+
+    font-size: 19px;
+
+    line-height: 1;
+
+    transition:
+        transform 0.4s ease;
+}
+
+
+/* =========================================================
+   10. MORNING SUNLIGHT
+   ========================================================= */
+
+[data-theme="light"] body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 360px;
+    height: 360px;
+
+    right: 2%;
+    top: -180px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 222, 137, 0.28),
+            rgba(255, 220, 140, 0.12) 35%,
+            transparent 72%
+        );
+
+    filter:
+        blur(10px);
+
+    opacity: 1;
+
+    animation:
+        morningGlow 7s ease-in-out infinite alternate;
+}
+
+
+@keyframes morningGlow {
+
+    from {
+        transform:
+            scale(0.95);
+        opacity: 0.65;
+    }
+
+    to {
+        transform:
+            scale(1.08);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   11. NIGHT AMBIENT GLOW
+   ========================================================= */
+
+[data-theme="dark"] body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 420px;
+    height: 420px;
+
+    right: -180px;
+    top: -180px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(91, 176, 205, 0.10),
+            rgba(77, 86, 165, 0.05) 40%,
+            transparent 72%
+        );
+
+    filter:
+        blur(20px);
+
+    animation:
+        nightGlow 9s ease-in-out infinite alternate;
+}
+
+
+@keyframes nightGlow {
+
+    from {
+        transform:
+            translate(0, 0)
+            scale(0.95);
+    }
+
+    to {
+        transform:
+            translate(-25px, 18px)
+            scale(1.08);
+    }
+}
+
+
+/* =========================================================
+   12. TOPBAR ACTIONS
+   ========================================================= */
+
+.topbar-actions {
+
+    background:
+        var(--bg-card);
+
+    border:
+        1px solid var(--border-color);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   13. RESPONSIVE — KEEP THE FIXES
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .main-content {
+
+        margin-left: 82px;
+
+        width:
+            calc(100% - 82px);
+
+        padding:
+            28px 22px 45px;
+    }
+
+    .dashboard-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .sidebar-bottom {
+
+        margin-top: 8px !important;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .sidebar-bottom {
+
+        margin-top: 0 !important;
+    }
+
+    .main-content {
+
+        margin-left: 0;
+
+        width: 100%;
+
+        padding:
+            22px 16px 95px;
+    }
+
+    .dashboard-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+}

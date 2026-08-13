@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ThermoSense | Temperature Intelligence</title>
+
+
+    <!-- Google Font -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Main stylesheet -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="app-container">
+
+
+        <!-- =====================================================
+             SIDEBAR
+             ===================================================== -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    <span>°</span>
+                </div>
+
+                <span class="brand-name">
+                    ThermoSense
+                </span>
+
+            </div>
+
+
+            <nav class="navigation">
+
+                <button
+                    class="nav-item active"
+                    title="Dashboard"
+                    type="button"
+                >
+                    <span class="nav-icon">
+                        ⌂
+                    </span>
+
+                    <span class="nav-text">
+                        Dashboard
+                    </span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    title="Converter"
+                    type="button"
+                >
+                    <span class="nav-icon">
+                        ⇄
+                    </span>
+
+                    <span class="nav-text">
+                        Converter
+                    </span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    title="Analytics"
+                    type="button"
+                >
+                    <span class="nav-icon">
+                        ◫
+                    </span>
+
+                    <span class="nav-text">
+                        Analytics
+                    </span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    title="History"
+                    type="button"
+                >
+                    <span class="nav-icon">
+                        ◷
+                    </span>
+
+                    <span class="nav-text">
+                        History
+                    </span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    title="References"
+                    type="button"
+                >
+                    <span class="nav-icon">
+                        ☆
+                    </span>
+
+                    <span class="nav-text">
+                        References
+                    </span>
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <button
+                    class="nav-item"
+                    title="Settings"
+                    type="button"
+                >
+                    <span class="nav-icon">
+                        ⚙
+                    </span>
+
+                    <span class="nav-text">
+                        Settings
+                    </span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    title="Theme"
+                    type="button"
+                >
+                    <span class="nav-icon">
+                        ☾
+                    </span>
+
+                    <span class="nav-text">
+                        Appearance
+                    </span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =====================================================
+             MAIN CONTENT
+             ===================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- ================= HEADER ================= -->
+
+            <header class="topbar">
+
+
+                <div class="page-heading">
+
+                    <span class="eyebrow">
+                        TEMPERATURE INTELLIGENCE
+                    </span>
+
+
+                    <h1>
+                        Heyyyy There!! 👋
+                    </h1>
+
+
+                    <p>
+                        Convert, analyze and explore temperature values.
+                    </p>
+
+                </div>
+
+
+
+                <!-- ================= HEADER ACTIONS ================= -->
+
+                <div class="topbar-actions">
+
+
+                    <button
+                        class="icon-button"
+                        title="Search"
+                        type="button"
+                    >
+                        ⌕
+                    </button>
+
+
+                    <button
+                        class="unit-toggle active"
+                        type="button"
+                    >
+                        °C
+                    </button>
+
+
+                    <button
+                        class="unit-toggle"
+                        type="button"
+                    >
+                        °F
+                    </button>
+
+
+                    <button
+                        class="unit-toggle"
+                        type="button"
+                    >
+                        K
+                    </button>
+
+
+                    <!-- ================= THEME TOGGLE ================= -->
+
+                    <button
+                        id="themeToggle"
+                        class="theme-toggle"
+                        type="button"
+                        aria-label="Switch to light mode"
+                        title="Toggle theme"
+                    >
+
+                        <span
+                            id="themeIcon"
+                            class="theme-icon"
+                        >
+                            🌙
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =====================================================
+                 DASHBOARD GRID
+                 ===================================================== -->
+
+            <section class="dashboard-grid">
+
+
+                <!-- =================================================
+                     CONVERTER CARD
+                     ================================================= -->
+
+                <article class="card converter-card">
+
+
+                    <div class="card-header">
+
+
+                        <div>
+
+                            <span class="card-label">
+                                PRIMARY TOOL
+                            </span>
+
+
+                            <h2>
+                                Temperature Converter
+                            </h2>
+
+                        </div>
+
+
+                        <span class="status-dot">
+                            LIVE
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="converter-area">
+
+
+                        <!-- FROM INPUT -->
+
+                        <div class="temperature-input">
+
+
+                            <label
+                                for="temperatureInput"
+                            >
+                                ENTER TEMPERATURE
+                            </label>
+
+
+                            <div class="input-wrapper">
+
+
+                                <input
+                                    type="number"
+                                    id="temperatureInput"
+                                    placeholder="32.00"
+                                    step="any"
+                                >
+
+
+                                <span class="input-unit">
+                                    °C
+                                </span>
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- SMALL SWAP -->
+
+                        <button
+                            class="swap-button"
+                            id="swapButton"
+                            title="Swap units"
+                            type="button"
+                        >
+                            ⇄
+                        </button>
+
+
+
+                        <!-- OUTPUT -->
+
+                        <div class="temperature-output">
+
+
+                            <span class="output-label">
+                                CONVERTED VALUE
+                            </span>
+
+
+                            <div class="output-value">
+
+                                <span id="resultValue">
+                                    89.60
+                                </span>
+
+                                <span id="resultUnit">
+                                    °F
+                                </span>
+
+                            </div>
+
+
+                            <button
+                                class="copy-result"
+                                id="copyResult"
+                                type="button"
+                            >
+                                Copy result
+                            </button>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- UNIT SELECTORS -->
+
+                    <div class="unit-selection">
+
+
+                        <div class="select-group">
+
+                            <label>
+                                FROM
+                            </label>
+
+
+                            <select id="fromUnit">
+
+                                <option value="C">
+                                    Celsius (°C)
+                                </option>
+
+                                <option value="F">
+                                    Fahrenheit (°F)
+                                </option>
+
+                                <option value="K">
+                                    Kelvin (K)
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- LARGE SWAP -->
+
+                        <button
+                            class="large-swap"
+                            id="largeSwap"
+                            title="Swap units"
+                            type="button"
+                        >
+                            ⇄
+                        </button>
+
+
+
+                        <div class="select-group">
+
+                            <label>
+                                TO
+                            </label>
+
+
+                            <select id="toUnit">
+
+                                <option value="F">
+                                    Fahrenheit (°F)
+                                </option>
+
+                                <option value="C">
+                                    Celsius (°C)
+                                </option>
+
+                                <option value="K">
+                                    Kelvin (K)
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PRECISION -->
+
+                    <div class="converter-footer">
+
+
+                        <div class="precision-control">
+
+                            <span>
+                                Decimal precision
+                            </span>
+
+
+                            <select id="precision">
+
+                                <option value="0">
+                                    0
+                                </option>
+
+                                <option value="1">
+                                    1
+                                </option>
+
+                                <option
+                                    value="2"
+                                    selected
+                                >
+                                    2
+                                </option>
+
+                                <option value="3">
+                                    3
+                                </option>
+
+                                <option value="4">
+                                    4
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <span class="instant-label">
+                            ● Instant conversion
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =================================================
+                     STATUS CARD
+                     ================================================= -->
+
+                <article class="card status-card">
+
+
+                    <div class="card-header">
+
+
+                        <div>
+
+                            <span class="card-label">
+                                CURRENT STATUS
+                            </span>
+
+
+                            <h2>
+                                Temperature Profile
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="status-content">
+
+
+                        <div
+                            class="temperature-icon"
+                            id="temperatureIcon"
+                        >
+                            ☀️
+                        </div>
+
+
+                        <div class="status-temperature">
+
+
+                            <strong id="statusTemperature">
+                                32.00°C
+                            </strong>
+
+
+                            <span id="temperatureCategory">
+                                WARM
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <p id="temperatureDescription">
+                        A warm temperature with elevated thermal conditions.
+                    </p>
+
+                </article>
+
+
+
+                <!-- =================================================
+                     TEMPERATURE SCALE
+                     ================================================= -->
+
+                <article class="card scale-card">
+
+
+                    <div class="card-header">
+
+
+                        <div>
+
+                            <span class="card-label">
+                                VISUAL ANALYSIS
+                            </span>
+
+
+                            <h2>
+                                Temperature Scale
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="scale-container">
+
+
+                        <div class="scale-labels">
+
+                            <span>
+                                ❄ Freezing
+                            </span>
+
+                            <span>
+                                Cool
+                            </span>
+
+                            <span>
+                                Moderate
+                            </span>
+
+                            <span>
+                                Warm
+                            </span>
+
+                            <span>
+                                🔥 Hot
+                            </span>
+
+                        </div>
+
+
+
+                        <div class="temperature-scale">
+
+
+                            <div
+                                class="scale-indicator"
+                                id="scaleIndicator"
+                            >
+
+                                <span></span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="scale-values">
+
+                            <span>
+                                -20°
+                            </span>
+
+                            <span>
+                                0°
+                            </span>
+
+                            <span>
+                                20°
+                            </span>
+
+                            <span>
+                                40°
+                            </span>
+
+                            <span>
+                                60°+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =================================================
+                     HISTORY
+                     ================================================= -->
+
+                <article class="card history-card">
+
+
+                    <div class="card-header">
+
+
+                        <div>
+
+                            <span class="card-label">
+                                ACTIVITY
+                            </span>
+
+
+                            <h2>
+                                Recent Conversions
+                            </h2>
+
+                        </div>
+
+
+                        <button
+                            class="clear-history"
+                            id="clearHistory"
+                            type="button"
+                        >
+                            Clear all
+                        </button>
+
+                    </div>
+
+
+
+                    <div
+                        class="history-list"
+                        id="historyList"
+                    >
+
+                        <div class="history-empty">
+                            Your recent conversions will appear here.
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =================================================
+                     QUICK REFERENCES
+                     ================================================= -->
+
+                <article class="card references-card">
+
+
+                    <div class="card-header">
+
+
+                        <div>
+
+                            <span class="card-label">
+                                QUICK ACCESS
+                            </span>
+
+
+                            <h2>
+                                Temperature References
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="reference-grid">
+
+
+                        <!-- FREEZING -->
+
+                        <button
+                            class="reference-item"
+                            type="button"
+                        >
+
+                            <span class="reference-icon">
+                                ❄️
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    Freezing Point
+                                </strong>
+
+
+                                <small>
+                                    0°C · 32°F · 273.15K
+                                </small>
+
+                            </div>
+
+                        </button>
+
+
+
+                        <!-- ROOM TEMPERATURE -->
+
+                        <button
+                            class="reference-item"
+                            type="button"
+                        >
+
+                            <span class="reference-icon">
+                                🌤️
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    Room Temperature
+                                </strong>
+
+
+                                <small>
+                                    25°C · 77°F · 298.15K
+                                </small>
+
+                            </div>
+
+                        </button>
+
+
+
+                        <!-- BODY TEMPERATURE -->
+
+                        <button
+                            class="reference-item"
+                            type="button"
+                        >
+
+                            <span class="reference-icon">
+                                🧍
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    Body Temperature
+                                </strong>
+
+
+                                <small>
+                                    37°C · 98.6°F · 310.15K
+                                </small>
+
+                            </div>
+
+                        </button>
+
+
+
+                        <!-- BOILING POINT -->
+
+                        <button
+                            class="reference-item"
+                            type="button"
+                        >
+
+                            <span class="reference-icon">
+                                ♨️
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    Water Boiling
+                                </strong>
+
+
+                                <small>
+                                    100°C · 212°F · 373.15K
+                                </small>
+
+                            </div>
+
+                        </button>
+
+
+                    </div>
+
+                </article>
+
+
+            </section>
+
+
+        </main>
+
+
+    </div>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
